@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LiliPixel Harness</title>
+  <link rel="stylesheet" href="/web/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>LiliPixel Harness</h1>
+      <p class="sub">Local webapp for <a href="https://huggingface.co/Pinkstack/LiliPixel-V1-190M" target="_blank" rel="noreferrer">Pinkstack/LiliPixel-V1-190M</a></p>
+    </div>
+    <div class="status-pill" id="statusPill">Checking...</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Model</h2>
+      <div id="modelInfo" class="muted">Loading status...</div>
+      <div class="row">
+        <button id="downloadBtn">Download model</button>
+        <button id="loadBtn" class="secondary">Load model</button>
+        <button id="unloadBtn" class="secondary">Unload</button>
+      </div>
+      <div id="downloadStatus" class="muted small"></div>
+
+      <h2>Generate</h2>
+      <label>Prompt
+        <textarea id="prompt" rows="4" placeholder="cute border collie dog with a purple collar, transparent background"></textarea>
+      </label>
+      <div class="hint small muted">16/32: transparent sprites (", transparent background" auto-added). 64: scenes; start with "realistic photo, " for realism.</div>
+
+      <div class="grid2">
+        <label>Size
+          <select id="size">
+            <option value="16">16 × 16</option>
+            <option value="32" selected>32 × 32</option>
+            <option value="64">64 × 64</option>
+          </select>
+        </label>
+        <label>Steps
+          <input id="steps" type="number" min="1" max="100" value="30">
+        </label>
+        <label>CFG
+          <input id="cfg" type="number" min="0" max="20" step="0.5" value="3.0">
+        </label>
+        <label>Seed (empty = random)
+          <input id="seed" type="number" placeholder="random">
+        </label>
+        <label>Batch
+          <input id="batch" type="number" min="1" max="8" value="4">
+        </label>
+      </div>
+
+      <div class="row">
+        <button id="genBtn" class="primary">Generate</button>
+      </div>
+      <div id="genStatus" class="muted small"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Result</h2>
+      <div id="results" class="results empty">
+        <div class="muted">Generated images appear here.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/web/app.js"></script>
+</body>
+</html>
